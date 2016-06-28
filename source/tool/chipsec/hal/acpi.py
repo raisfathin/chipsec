@@ -372,6 +372,8 @@ class ACPI:
         else:
             logger().warn( 'Cannot find FADT in %s' % ('XSDT' if is_xsdt else 'RSDT') )
 
+        # Disallow accessing nonexistent ACPI table after populating tableList
+        self.tableList.default_factory = None
         return self.tableList
 
     #
